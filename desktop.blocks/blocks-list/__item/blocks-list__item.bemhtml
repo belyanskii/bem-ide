@@ -1,0 +1,12 @@
+// возвращаем chooser и примешиваем к нему наш item + задаем тэг 'li'
+block('blocks-list').elem('item')(
+
+    def()(function() {
+        return applyCtx({
+            block: 'chooser',
+            tag: 'li',
+            mix: [{ block: 'blocks-list', elem: 'item' }],
+            blockInfo: this.ctx.blockInfo
+        })
+    })
+);

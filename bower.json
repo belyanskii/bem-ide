@@ -1,0 +1,19 @@
+{
+  "name": "bem-ide",
+  "version": "0.0.1",
+  "bugs": "https://github.com/belyanskii/bem-ide/issues",
+  "ignore": [
+    ".bem/cache",
+    "node_modules",
+    "libs"
+  ],
+  "dependencies": {
+    "bem-core": "git://github.com/bem/bem-core.git#v2.3.0",
+    "bem-components": "git://github.com/bem/bem-components.git#62242d38e6cb5123054399c5b60a001941f98b65",
+    "bem-mvc": "git://github.com/bem/bem-mvc.git#v2"
+  },
+    "resolutions": {
+        "bem-core": "v2.3.0",
+        "bem-components": "2242d38e6cb5123054399c5b60a001941f98b65"
+    }
+}

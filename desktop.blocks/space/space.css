@@ -1,0 +1,25 @@
+.space
+{
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+
+.space__left-side
+{
+    float: left;
+    overflow-y: scroll;
+
+    box-sizing: border-box;
+    width: 15%;
+    height: 100%;
+}
+
+.space__right-side
+{
+    float: right;
+
+    box-sizing: border-box;
+    width: 85%;
+}

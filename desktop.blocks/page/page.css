@@ -1,0 +1,16 @@
+html,
+.page
+{
+    height: 100%;
+}
+
+.page
+{
+    margin: 0;
+    padding: 0;
+}
+
+*:focus
+{
+    outline: none;
+}

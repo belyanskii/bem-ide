@@ -1,0 +1,17 @@
+block('chooser').elem('list')(
+
+    tag()('ul'),
+
+    content()(function() {
+        return this.ctx.data.map(function(item) {
+            return {
+                block: 'chooser',
+                elem: 'item',
+                type: this.ctx.type,
+                elemName: this.ctx.elemName,
+                modName: this.ctx.modName,
+                data: item
+            };
+        }, this)
+    })
+);

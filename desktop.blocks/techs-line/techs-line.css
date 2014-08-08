@@ -1,0 +1,34 @@
+.techs-line
+{
+    padding: 5px 10px;
+
+    color: #222;
+    border-bottom: 1px solid #222;
+    background: #fff;
+}
+
+.techs-line__list
+{
+    display: inline-block;
+}
+
+.techs-line__list-item
+{
+    margin-right: 10px;
+
+    cursor: pointer;
+
+    color: #333;
+}
+
+.techs-line__list-item:hover
+{
+    color: #e00;
+}
+
+.techs-line__text
+{
+    display: inline-block;
+
+    margin-right: 5px;
+}

@@ -1,0 +1,21 @@
+block('space')(
+
+    js()(true),
+
+    content()(function() {
+        return [
+            {
+                block: 'blocks-list',
+                mix: [{ block: 'space', elem: 'left-side' }]
+            },
+            {
+                block: 'techs-line',
+                mix: [{ block: 'space', elem: 'right-side' }]
+            },
+            {
+                block: 'editor',
+                mix: [{ block: 'space', elem: 'right-side' }]
+            }
+        ];
+    })
+);

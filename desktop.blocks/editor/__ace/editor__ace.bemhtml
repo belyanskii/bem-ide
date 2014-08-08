@@ -1,0 +1,15 @@
+block('editor').elem('ace')(
+
+    content()(function() {
+        return [
+            {
+                elem: 'title',
+                content: this.ctx.title
+            },
+            {
+                elem: 'area',
+                attrs: { id: this.ctx.info }
+            }
+        ];
+    })
+);

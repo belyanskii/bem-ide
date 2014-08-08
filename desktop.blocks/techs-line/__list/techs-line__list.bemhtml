@@ -1,0 +1,13 @@
+block('techs-line').elem('list')(
+
+    content()(function() {
+        return (this.ctx.blockTechs || []).map(function(mod) {
+           return {
+               block: 'link',
+               mods: { pseudo: true },
+               mix: [{ block: 'techs-line', elem: 'list-item' }],
+               content: mod
+           };
+       })
+    })
+);

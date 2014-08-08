@@ -1,0 +1,16 @@
+.editor
+{
+    position: relative;
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    background: #323232;
+}
+
+.editor__title
+{
+    padding: 5px 10px;
+
+    background: #fff;
+}
