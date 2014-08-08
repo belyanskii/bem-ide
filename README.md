@@ -1,4 +1,4 @@
-Terms:
- * bmnttn - bem notation - { blockName: 'i-bem', elemName: 'dom', modName: 'type', modVal: 'red' }
-
-
+***Lounch:***
+ - npm i
+ - bem make
+ - npm start
