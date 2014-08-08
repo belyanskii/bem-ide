@@ -119,13 +119,18 @@ function _buildEntityPath(entity, level, tech) {
     var entityFullName = [entity.blockName],
         entityPath = [level, entity.blockName];
 
-    entity.elemName && entityFullName.push('__' + entity.elemName) && entityPath.push('__' + entity.elemName);
+    if(entity.elemName) {
+        entityFullName.push('__' + entity.elemName);
+        entityPath.push('__' + entity.elemName);
+    }
 
-    (entity.modName && !entity.modVal) && entityFullName.push('_' + entity.modName);
+    if(entity.modName) {
+        entity.modVal ?
+            entityFullName.push('_' + entity.modName + '_' + entity.modVal) :
+            entityFullName.push('_' + entity.modName);
 
-    entity.modName && entityPath.push('_' + entity.modName);
-
-    (entity.modName && entity.modVal) && entityFullName.push('_' + entity.modName + '_' + entity.modVal);
+        entityPath.push('_' + entity.modName);
+    }
 
     entityFullName.push('.' + tech);
 

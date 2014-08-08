@@ -18,7 +18,7 @@ block('chooser').elem('item')(
                     modName: (isMod || isModVal) ? // Если это модификатор || если передано название модификатора
                         (ctx.modName || data.name) :
                         undefined,
-                    modVal: isModVal && data.name, // Если это значение модификатора
+                    modVal: isModVal ? data.name : undefined, // Если это значение модификатора
                     type: type // чтобы не писать проверки в разный местах, говорим сразу что это за тип
                 },
                 mods: { pseudo: true },
