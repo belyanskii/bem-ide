@@ -5,7 +5,7 @@ var scanl = require('scan-level'),
 
 /**
  * Сканирует уровень с блоками
- * @param level
+ * @param {String} level
  * @returns {*}
  */
 function scanLevel(level) {
@@ -25,7 +25,7 @@ function scanLevel(level) {
 
 /**
  * Сканирует несколько уровней сразу
- * @param levels
+ * @param {Array} levels
  * @returns {*}
  */
 function scanLevels(levels) {
@@ -36,8 +36,8 @@ function scanLevels(levels) {
 
 /**
  * Сканирует блок на уровне
- * @param level
- * @param block
+ * @param {String} level
+ * @param {String} block
  * @returns {*}
  */
 function scanLevelByBlock(level, block) {
@@ -57,8 +57,8 @@ function scanLevelByBlock(level, block) {
 
 /**
  * Сканирует блок на уровнях
- * @param levels
- * @param block
+ * @param {Array} levels
+ * @param {String} block
  * @returns {*}
  */
 function scanBlock(levels, block) {
@@ -70,9 +70,9 @@ function scanBlock(levels, block) {
 /**
  * Возвращает файл технологии сущности (блок, элемент, модификатор)
  * Если файлов несколько (на разных уровнях), склеивает в один используя разделитель
- * @param levels
- * @param entity
- * @param tech
+ * @param {Array} levels
+ * @param {Object} entity
+ * @param {String} tech
  * @returns {*}
  */
 function getTech(levels, entity, tech) {
@@ -84,7 +84,7 @@ function getTech(levels, entity, tech) {
 
         return fs.exists(entityPath).then(function(exists) {
             if(exists) {
-                return fs.read(entityPath, 'utf-8').then(function (data) {
+                return fs.read(entityPath, 'utf-8').then(function(data) {
                     return {
                         tech: data,
                         level: entityPath
@@ -109,9 +109,9 @@ function getTech(levels, entity, tech) {
 
 /**
  * Строим путь для сущности
- * @param entity
- * @param level
- * @param tech
+ * @param {Object|String} entity
+ * @param {String} level
+ * @param {String} tech
  * @returns {*}
  * @private
  */
@@ -134,7 +134,7 @@ function _buildEntityPath(entity, level, tech) {
 
 /**
  * Сохранение о_о
- * @param raw {string}
+ * @param {string} raw
  */
 function saveTech(raw) {
     var beginRegex = /\/\* begin (.*) \*\/\s/,
@@ -145,7 +145,7 @@ function saveTech(raw) {
     raw.replace(endRegex, '')
         .split(beginRegex).forEach(function(item, idx) {
             if(item.length !== 0) {
-                if (idx % 2) {
+                if(idx % 2) {
                     tempObj.path = item;
                 } else {
                     tempObj.content = item;
@@ -163,20 +163,20 @@ function saveTech(raw) {
         if(isFish) return;
 
         return fs.exists(path).then(function(exists) {
-            if (exists) {
-                return fs.write(path, content).then(function (err) {
-                    if (err) throw err;
+            if(exists) {
+                return fs.write(path, content).then(function(err) {
+                    if(err) throw err;
 
                     return {
                         status: 'Saved!'
                     };
                 });
             } else {
-                return fs.makeDir(PATH.dirname(path)).then(function (err) {
-                    if (err) return cb(err);
+                return fs.makeDir(PATH.dirname(path)).then(function(err) {
+                    if(err) return cb(err);
 
-                    return fs.write(path, content).then(function (err) {
-                        if (err) throw err;
+                    return fs.write(path, content).then(function(err) {
+                        if(err) throw err;
 
                         return {
                             status: 'Created!'
