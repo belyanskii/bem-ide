@@ -4,6 +4,7 @@ node_modules/
 .idea
 .project
 .svn
+atlassian-ide-plugin.xml
 
 # bem
 .bem/cache/

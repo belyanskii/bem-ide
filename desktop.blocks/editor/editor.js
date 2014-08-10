@@ -98,6 +98,7 @@ modules.define(
                         'vanilla.js',
                         'spec.js',
                         'deps.js',
+                        'bemjson.js',
                         'bemhtml',
                         'bemtree'
                     ],
@@ -122,12 +123,26 @@ modules.define(
         },
 
         /**
+         * Уничтожаем экземпляры редакторов перед добавлением новых
+         * @private
+         */
+        _destructEditors: function() {
+            var aceInstances = this.elem('area');
+
+            aceInstances.length && aceInstances.forEach(function(inst) {
+                ace.edit(inst).container.remove();
+            });
+
+            BEMDOM.destruct(this.domElem, true);
+        },
+
+        /**
          * Для каждой технологии блока создаем редактор
          * @param {Event} e
          * @param {Object} bmnttn
          */
         _onEntitySelect: function(e, bmnttn) {
-            BEMDOM.destruct(this.domElem, true);
+            this._destructEditors();
 
             var model = u.getEntityModel(bmnttn),
                 techs = model.get('techs');
