@@ -90,11 +90,12 @@ modules.define('initiator', ['jquery', 'vow', 'model', 'utils', 'data-provider',
                 var data = mods[key],
                     value = !!prefix ? key : false,
                     modName = prefix || key,
-                    id = value ? (modName + '_' + value) : modName,
+                    modId = blockName + '_' + modName,
+                    modValId = modId + '_' + value,
                     techs = this._getObjKeys(data.files),
                     modModel = MODEL.getOne({
                         name: 'm-modifier',
-                        id: modName,
+                        id: modId,
                         parentModel: parentModel
                     });
 
@@ -103,7 +104,7 @@ modules.define('initiator', ['jquery', 'vow', 'model', 'utils', 'data-provider',
                         name: 'm-modifier',
                         parentModel: parentModel
                     }, {
-                        id: modName,
+                        id: modId,
                         name: modName
                     });
                 }
@@ -113,7 +114,7 @@ modules.define('initiator', ['jquery', 'vow', 'model', 'utils', 'data-provider',
                 });
 
                 if(!!prefix) {
-                    var valModel = MODEL.getOne({ name: 'm-modifier-val', id: id });
+                    var valModel = MODEL.getOne({ name: 'm-modifier-val', id: modValId });
 
                     if(valModel) {
                         valModel.update({
@@ -121,7 +122,7 @@ modules.define('initiator', ['jquery', 'vow', 'model', 'utils', 'data-provider',
                         });
                     } else {
                         modModel.get('vals').add({
-                            id: id,
+                            id: modValId,
                             name: value,
                             techs: techs
                         });

@@ -11,19 +11,18 @@ modules.define('utils', ['model'], function(provide, MODEL) {
             var blockModel = MODEL.getOne({ name: 'm-block', id: params.blockName }),
                 elemModel = params.elemName && MODEL.getOne({ name: 'm-block-elem', id: params.blockName + '__' + params.elemName, parentModel: blockModel }),
                 parentModel = elemModel || blockModel,
+                modModel = MODEL.getOne({ name: 'm-modifier', id: params.blockName + '_' +  params.modName, parentModel: parentModel }),
                 type = params.type,
                 isMod = type === 'mod',
                 isModVal = type === 'mod-val',
                 entityModel;
 
             if(isMod) {
-                entityModel = MODEL.getOne({ name: 'm-modifier', id: params.modName, parentModel: parentModel });
+                entityModel = modModel;
             } else if(isModVal) {
-                var modModel = MODEL.getOne({ name: 'm-modifier', id: params.modName, parentModel: parentModel });
-
                 entityModel = MODEL.getOne({
                     name: 'm-modifier-val',
-                    id: params.modName + '_' + params.modVal,
+                    id: params.blockName + '_' + params.modName + '_' + params.modVal,
                     parentModel: modModel
                 });
             } else {
