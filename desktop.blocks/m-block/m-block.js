@@ -1,80 +1,86 @@
-modules.define('m-block', ['model', 'jquery', 'm-modifier', 'm-block-elem'], function(provide, model, $) {
-    provide(model.decl('m-block', {
+modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
 
-        name: 'id',
+    /**
+     * Фильтруем технологии
+     * Временное решение для issue#2
+     * @param techs
+     * @returns {*}
+     */
+    function techsPreprocess(techs) {
+        return techs.filter(function(item) {
+            return !item.match('tmpl-specs|test|example');
+        }, this);
+    }
 
-        techs: {
-            type: 'array',
-            preprocess: function(techs) {
-                return $.unique((this.get('techs') || []).concat(techs));
+    provide(
+        model.decl('m-block', {
+
+            name: 'id',
+
+            techs: {
+                type: 'array',
+                preprocess: function(techs) {
+                    return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
+                }
+            },
+
+            mods: {
+                type: 'models-list',
+                modelName: 'm-modifier'
+            },
+
+            elems: {
+                type: 'models-list',
+                modelName: 'm-block-elem'
             }
-        },
 
-        mods: {
-            type: 'models-list',
-            modelName: 'm-modifier'
-        },
+        })
+        .decl('m-block-elem', {
+            id: 'id',
 
-        elems: {
-            type: 'models-list',
-            modelName: 'm-block-elem'
-        }
+            name: 'string',
 
-    }));
-});
+            techs: {
+                type: 'array',
+                preprocess: function(techs) {
+                    return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
+                }
+            },
 
-modules.define('m-block-elem', ['model', 'jquery', 'm-modifier'], function(provide, model, $) {
-    provide(model.decl('m-block-elem', {
-        id: 'id',
-
-        name: 'string',
-
-        techs: {
-            type: 'array',
-            preprocess: function(techs) {
-                return $.unique((this.get('techs') || []).concat(techs));
+            mods: {
+                type: 'models-list',
+                modelName: 'm-modifier'
             }
-        },
+        })
+        .decl('m-modifier', {
+            id: 'id',
 
-        mods: {
-            type: 'models-list',
-            modelName: 'm-modifier'
-        }
-    }));
-});
+            name: 'string',
 
-modules.define('m-modifier', ['model', 'jquery', 'm-modifier-val'], function(provide, model, $) {
-    provide(model.decl('m-modifier', {
-        id: 'id',
+            vals: {
+                type: 'models-list',
+                modelName: 'm-modifier-val'
+            },
 
-        name: 'string',
-
-        vals: {
-            type: 'models-list',
-            modelName: 'm-modifier-val'
-        },
-
-        techs: {
-            type: 'array',
-            preprocess: function(techs) {
-                return $.unique((this.get('techs') || []).concat(techs));
+            techs: {
+                type: 'array',
+                preprocess: function(techs) {
+                    return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
+                }
             }
-        }
-    }))
-});
+        })
+        .decl('m-modifier-val', {
 
-modules.define('m-modifier-val', ['model', 'jquery'], function(provide, model, $) {
-    provide(model.decl('m-modifier-val', {
+            id: 'id',
 
-        id: 'id',
+            name: 'string',
 
-        name: 'string',
-
-        techs: {
-            type: 'array',
-            preprocess: function(techs) {
-                return $.unique((this.get('techs') || []).concat(techs));
+            techs: {
+                type: 'array',
+                preprocess: function(techs) {
+                    return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
+                }
             }
-        }
-    }));
+        })
+    );
 });
