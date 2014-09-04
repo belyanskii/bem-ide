@@ -18,15 +18,16 @@ modules.define(
          * Устанавливаем высоту редактора
          */
         _setEditorHeight: function() {
-            this.domElem.height($(window).height() - 29);
+            this.domElem.height($(window).height() - 35);
         },
 
         /**
          * Создаем инстанс редактора ACE
          * @param {Object} bmnttn
          * @param {String} tech
+         * @param {Array} techsToHide
          */
-        _createEditorInstance: function(bmnttn, tech) {
+        _createEditorInstance: function(bmnttn, tech, techsToHide) {
             var _this = this;
 
             dp.getTech(bmnttn, tech, function(data) {
@@ -35,8 +36,10 @@ modules.define(
                 BEMDOM.append(this.domElem, BEMHTML.apply({
                     block: 'editor',
                     elem: 'ace',
-                    info: tech,
-                    title: tech
+                    tech: tech,
+                    elemMods: {
+                        hidden: techsToHide.indexOf(tech) >= 0
+                    }
                 }));
 
                 aceEditor = ace.edit(tech);
@@ -137,6 +140,25 @@ modules.define(
         },
 
         /**
+         * Показываем / скрываем редактор, в зависимости от технологий
+         * в поле techsToHide выбранной сущности
+         * @param {Event} e
+         * @param {Object} data
+         * @param {Array} data.value массив с технологиями, которые необходимо скрыть
+         * @private
+         */
+        _onTechsToHideChange: function(e, data) {
+            this.findElem('ace').each(function(index, elem) {
+                // получаем технологию текущего редактора
+                var ace = $(elem),
+                    tech = this.elemParams(ace).tech,
+                    isHide = data.value.indexOf(tech) >= 0;
+
+                this.setMod(ace, 'hidden', isHide);
+            }.bind(this));
+        },
+
+        /**
          * Для каждой технологии блока создаем редактор
          * @param {Event} e
          * @param {Object} bmnttn
@@ -145,10 +167,13 @@ modules.define(
             this._destructEditors();
 
             var model = u.getEntityModel(bmnttn),
-                techs = model.get('techs');
+                techs = model.get('techs'),
+                techsToHide = model.get('techsToHide');
+
+            model.on('techsToHide', 'change', this._onTechsToHideChange, this);
 
             techs.forEach(function(tech) {
-                this._createEditorInstance(bmnttn, tech);
+                this._createEditorInstance(bmnttn, tech, techsToHide);
             }, this);
         }
 

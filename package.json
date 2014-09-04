@@ -21,24 +21,23 @@
         "vow-fs": "0.3.2",
         "serve-static": "~1.1.0",
 
-        "bem": "0.8.1",
         "bem-environ": "~1.4.0",
-        "roole": "~0.9.0",
+        "bem": "0.9.0",
+        "bem-tools-autoprefixer": "0.0.3",
+        "stylus": "^0.47.1",
+        "ym": "^0.1.0",
+        "borschik": "^1.3.0",
+        "borschik-tech-cleancss": "^1.0.0",
 
-        "bower": "~1.3.8",
+        "bower": "^1.3.9",
         "bower-npm-install": "~0.5.4"
     },
     "devDependencies": {
-        "bem": "0.8.1",
-        "bower": "~1.3.8",
-        "bower-npm-install": "~0.5.4",
-        "bem-tools-autoprefixer": "0.0.3",
         "jscs" : "*"
     },
     "scripts": {
         "start": "node server/app.js",
         "build": "bem make -m clean && bem make",
-        "postinstall": "bower-npm-install --non-interactive",
         "deps": "bower-npm-install --non-interactive"
     }
 }

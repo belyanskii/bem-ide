@@ -1,13 +1,22 @@
 block('techs-line').elem('list')(
 
     content()(function() {
-        return (this.ctx.blockTechs || []).map(function(mod) {
+        return (this.ctx.techs || []).map(function(tech) {
            return {
-               block: 'link',
-               mods: { pseudo: true },
-               mix: [{ block: 'techs-line', elem: 'list-item' }],
-               content: mod
+                block: 'checkbox',
+                mix: {
+                    block: 'techs-line',
+                    elem: 'list-item'
+                },
+                mods: {
+                    theme : 'normal',
+                    size : 's',
+                    type : 'button',
+                    checked : !this.ctx.techsToHide.length || this.ctx.techsToHide.indexOf(tech) < 0
+                },
+                val: tech,
+                text: tech
            };
-       })
+       }, this)
     })
 );

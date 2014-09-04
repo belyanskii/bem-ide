@@ -24,6 +24,8 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
                 }
             },
 
+            techsToHide: 'array',
+
             mods: {
                 type: 'models-list',
                 modelName: 'm-modifier'
@@ -47,6 +49,8 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
                 }
             },
 
+            techsToHide: 'array',
+
             mods: {
                 type: 'models-list',
                 modelName: 'm-modifier'
@@ -67,7 +71,9 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }
-            }
+            },
+
+            techsToHide: 'array'
         })
         .decl('m-modifier-val', {
 
@@ -80,7 +86,9 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }
-            }
+            },
+
+            techsToHide: 'array'
         })
     );
 });

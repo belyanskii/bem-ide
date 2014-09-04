@@ -1,14 +1,18 @@
 block('editor').elem('ace')(
 
+    js()(function() {
+        return { tech: this.ctx.tech };
+    }),
+
     content()(function() {
         return [
             {
                 elem: 'title',
-                content: this.ctx.title
+                content: this.ctx.tech
             },
             {
                 elem: 'area',
-                attrs: { id: this.ctx.info }
+                attrs: { id: this.ctx.tech }
             }
         ];
     })

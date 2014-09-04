@@ -9,9 +9,11 @@
             { block : 'events', elems : 'channels' },
             { elems: ['list'] },
             {
-                block: 'link',
+                block: 'checkbox',
                 mods: {
-                    pseudo: true
+                    type: 'button',
+                    theme: 'normal',
+                    size: 'm'
                 }
             }
         ]
@@ -24,6 +26,15 @@
                 tech : 'bemhtml',
                 block : 'techs-line',
                 elems: ['list']
+            },
+            {
+                tech : 'bemhtml',
+                block: 'checkbox',
+                mods: {
+                    type: 'button',
+                    theme: 'normal',
+                    size: 's'
+                }
             }
         ]
     }
