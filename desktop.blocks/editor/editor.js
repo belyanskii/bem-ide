@@ -73,8 +73,7 @@ modules.define(
                     var a = editor.getValue();
 
                     dp.saveTech(a, function(data) {
-                        console.log(data);
-                        alert(data.status);
+                        console.table(data);
                     }, this);
                 }
             });

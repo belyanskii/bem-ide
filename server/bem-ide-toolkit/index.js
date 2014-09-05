@@ -165,7 +165,10 @@ function saveTech(raw) {
             content = item.content,
             isFish = content.match('WRITE SOME CODE FOR THIS LEVEL HERE');
 
-        if(isFish) return;
+        if(isFish) return{
+            path: item.path,
+            status: 'Skipped!'
+        };
 
         return fs.exists(path).then(function(exists) {
             if(exists) {
@@ -173,6 +176,7 @@ function saveTech(raw) {
                     if(err) throw err;
 
                     return {
+                        path: item.path,
                         status: 'Saved!'
                     };
                 });
@@ -184,6 +188,7 @@ function saveTech(raw) {
                         if(err) throw err;
 
                         return {
+                            path: item.path,
                             status: 'Created!'
                         };
                     });
