@@ -9,8 +9,12 @@ block('space')(
                 mix: [{ block: 'space', elem: 'left-side' }]
             },
             {
-                block: 'techs-line',
-                mix: [{ block: 'space', elem: 'right-side' }]
+                elem: 'line',
+                content: [
+                    {
+                        block: 'techs-line'
+                    }
+                ]
             },
             {
                 block: 'editor',

@@ -6,18 +6,3 @@
 
     padding: 5px 0 5px 20px;
 }
-
-.chooser__item:before
-{
-    position: absolute;
-    left: 0;
-
-    content: '\2014';
-}
-
-.chooser__item .link:hover
-{
-    cursor: pointer;
-
-    color: #ffeba0;
-}

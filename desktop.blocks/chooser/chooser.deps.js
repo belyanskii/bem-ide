@@ -9,7 +9,14 @@
             }
         },
         {
-            elems: ['list', 'item']
+            elems: [
+                'list',
+                'item',
+                {
+                    elem: 'entity',
+                    mods: { type: ['mod', 'mod-val', 'elem'] }
+                }
+            ]
         }
     ]
 })

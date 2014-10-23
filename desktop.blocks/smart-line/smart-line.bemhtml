@@ -1,0 +1,12 @@
+block('smart-line')(
+
+    js()(true),
+
+    content()(function() {
+        return {
+            block: 'input',
+            mods: { theme: 'normal', size: 's' },
+            placeholder: 'create -b blockName -e elemName -m modName -v modVal -t js, css, bemhtml...'
+        };
+    })
+);

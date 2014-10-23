@@ -16,10 +16,18 @@
     height: 100%;
 }
 
-.space__right-side
+.space__right-side,
+.space__line
 {
     float: right;
+    position: relative;
 
     box-sizing: border-box;
     width: 85%;
+    height: calc(100% - 35px);
+}
+
+.space__line
+{
+    height: 35px;
 }

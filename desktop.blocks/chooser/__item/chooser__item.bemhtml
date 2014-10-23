@@ -22,6 +22,13 @@ block('chooser').elem('item')(
                     type: type // чтобы не писать проверки в разный местах, говорим сразу что это за тип
                 },
                 mods: { pseudo: true },
+                mix: [{
+                    block: 'chooser',
+                    elem: 'entity',
+                    elemMods: {
+                        type: type
+                    }
+                }],
                 content: data.name
             }];
 

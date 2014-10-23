@@ -7,18 +7,7 @@ modules.define(
         onSetMod: {
             js: function() {
                 channels('space').on('entity:select', this._onEntitySelect, this);
-
-                this.bindToWin('resize', this._setEditorHeight);
-
-                this._setEditorHeight();
             }
-        },
-
-        /**
-         * Устанавливаем высоту редактора
-         */
-        _setEditorHeight: function() {
-            this.domElem.height($(window).height() - 35);
         },
 
         /**
@@ -75,6 +64,17 @@ modules.define(
                     dp.saveTech(a, function(data) {
                         console.table(data);
                     }, this);
+                }
+            });
+
+            // Подписываемся для сохранения
+            editorInst.commands.addCommand({
+                name: 'saveData',
+                bindKey: { win: 'Ctrl-B',  mac: 'Command-B' },
+                exec: function() {
+                    channels('space').emit('entity:create');
+
+                    return false;
                 }
             });
 

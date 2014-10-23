@@ -1,0 +1,18 @@
+.chooser__entity
+{
+    position: relative;
+}
+
+.chooser__entity:hover
+{
+    cursor: pointer;
+
+    color: #ffeba0;
+}
+
+.chooser__entity:before
+{
+    position: absolute;
+    right: 115%;
+    bottom: 2px;
+}

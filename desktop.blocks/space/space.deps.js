@@ -14,6 +14,12 @@
         },
         {
             block: 'techs-line'
+        },
+        {
+            block: 'smart-line'
+        },
+        {
+            block: 'mousetrap'
         }
     ]
 }]
