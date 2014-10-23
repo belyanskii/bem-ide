@@ -8,6 +8,7 @@
 
 * git clone https://github.com/belyanskii/bem-ide.git (клонируем)
 * cd bem-ide
+* npm i -g bem-cli (https://github.com/bem/bem-cli)
 * npm i
 * bem make
 * npm start (запускаем сервер на 7777 порту)
