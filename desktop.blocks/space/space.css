@@ -18,8 +18,9 @@
 
 .space__right-side
 {
-    float: right;
     position: relative;
+
+    float: right;
 
     box-sizing: border-box;
     width: 85%;
@@ -30,5 +31,6 @@
 .space__left-side_type_line
 {
     height: 35px;
+
     border-bottom: 1px solid #000;
 }

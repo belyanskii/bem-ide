@@ -5,33 +5,41 @@
 
 .new-entity__cover
 {
-    display: none;
     position: absolute;
+    z-index: 20;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 100%;
+
+    display: none;
+
     width: 100%;
-    z-index: 20;
-    background: rgba(50, 50, 50, 0.5);
+    height: 100%;
+
+    background: rgba(50, 50, 50, .5);
 }
 
 .new-entity__form
 {
-    display: none;
     position: absolute;
-    background: #ccc;
+    z-index: 21;
     top: 10%;
     left: 50%;
-    margin-left: -200px;
+
+    display: none;
+
     width: 400px;
-    z-index: 21;
+    margin-left: -200px;
     padding: 10px;
+
+    background: #ccc;
 }
 
-.new-entity .input {
+.new-entity .input
+{
     display: block;
+
     margin-bottom: 5px;
 }
 
