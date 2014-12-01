@@ -1,0 +1,42 @@
+.new-entity
+{
+    padding: 5px 10px;
+}
+
+.new-entity__cover
+{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    background: rgba(50, 50, 50, 0.5);
+}
+
+.new-entity__form
+{
+    display: none;
+    position: absolute;
+    background: #ccc;
+    top: 10%;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    z-index: 21;
+    padding: 10px;
+}
+
+.new-entity .input {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.new-entity_show-form .new-entity__cover,
+.new-entity_show-form .new-entity__form
+{
+    display: block;
+}

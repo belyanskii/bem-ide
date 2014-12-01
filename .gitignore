@@ -7,7 +7,7 @@ node_modules/
 atlassian-ide-plugin.xml
 
 # bem
-.bem/cache/
+.enb/tmp/
 *bundles*/*/*.*
 !*bundles*/*/*.bemjson.js
 !*bundles*/.bem/*

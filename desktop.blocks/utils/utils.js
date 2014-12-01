@@ -12,7 +12,7 @@ modules.define('utils', ['model'], function(provide, MODEL) {
                 elemModel = params.elemName && MODEL.getOne({ name: 'm-block-elem', id: params.blockName + '__' + params.elemName, parentModel: blockModel }),
                 parentModel = elemModel || blockModel,
                 modModel = MODEL.getOne({ name: 'm-modifier', id: params.blockName + '_' +  params.modName, parentModel: parentModel }),
-                type = params.type,
+                type = params.type || (params.modVal ? 'mod-val' : params.modName ? 'mod' : 'elem'),
                 isMod = type === 'mod',
                 isModVal = type === 'mod-val',
                 entityModel;

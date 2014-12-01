@@ -5,23 +5,21 @@ var express = require('express'),
     routes = require('./routes'),
     path = require('path'),
     st = require('serve-static'),
-    app = express();
+    compress = require('compression'),
+    app = express(),
+    apiMiddleware = require('bla').apiMiddleware;
 
 // Deps
 app
     .use(st(process.cwd()))
+    .use(compress())
     .use(morgan('default'))
     .use(bodyParser())
+    .use('/api/:method?', apiMiddleware(__dirname + '/api/**/*.api.js'))
     .use(methodOverride());
 
 // Routes
 var router = express.Router();
-
-router.post('/api/getLevel', routes.getLevel);
-router.post('/api/getLevels', routes.getLevels);
-router.post('/api/getBlock', routes.getBlock);
-router.post('/api/getEntityTech', routes.getEntityTech);
-router.post('/api/saveEntityTech', routes.saveEntityTech);
 
 router.get('/', routes.index);
 

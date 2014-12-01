@@ -24,11 +24,13 @@ var tech = {
 
     // bemhtml
     bemhtml: require('enb-bemxjst/techs/bemhtml-old'),
-    htmlFromBemjson: require('enb-bemxjst/techs/html-from-bemjson'),
+    htmlFromBemjson: require('enb-bemxjst/techs/html-from-bemjson')
 };
 
 module.exports = function(config) {
     config.nodes('*.bundles/*', function(nodeConfig) {
+        var isProd = process.env.YENV === 'production';
+
         nodeConfig.addTechs([
             // essential
             [tech.levels, { levels: getLevels(config) }],
@@ -41,7 +43,7 @@ module.exports = function(config) {
             [tech.cssStylus, { target: '?.css' }],
 
             // bemhtml
-            [tech.bemhtml, { devMode: process.env.YENV === 'development' }],
+            [tech.bemhtml, { devMode: isProd }],
             [tech.htmlFromBemjson],
 
             // client bemhtml
@@ -62,7 +64,7 @@ module.exports = function(config) {
             [tech.bemhtml, {
                 target: '?.browser.bemhtml.js',
                 filesTarget: '?.bemhtml.files',
-                devMode: process.env.YENV === 'development'
+                devMode: isProd
             }],
 
             // js
@@ -71,24 +73,14 @@ module.exports = function(config) {
                 target: '?.pre.js',
                 sources: ['?.browser.bemhtml.js', '?.browser.js']
             }],
-            [tech.prependYm, { source: '?.pre.js' }]
+            [tech.prependYm, { source: '?.pre.js' }],
+
+            // borschik
+            [tech.borschik, { sourceTarget: '?.js', destTarget: '_?.js', freeze: true, minify: isProd }],
+            [tech.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss', freeze: true, minify: isProd }]
         ]);
 
         nodeConfig.addTargets(['?.html', '_?.css', '_?.js']);
-
-        nodeConfig.mode('development', function() {
-            nodeConfig.addTechs([
-                [tech.fileCopy, { sourceTarget: '?.js', destTarget: '_?.js' }],
-                [tech.fileCopy, { sourceTarget: '?.css', destTarget: '_?.css' }]
-            ]);
-        });
-
-        nodeConfig.mode('production', function() {
-            nodeConfig.addTechs([
-                [tech.borschik, { sourceTarget: '?.js', destTarget: '_?.js' }],
-                [tech.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss' }]
-            ]);
-        });
     });
 };
 
@@ -101,6 +93,7 @@ function getLevels(config) {
             {"path":"libs/bem-components/desktop.blocks","check":false},
             {"path":"libs/bem-components/design/common.blocks","check":false},
             {"path":"libs/bem-components/design/desktop.blocks","check":false},
+            {"path":"node_modules/bla/blocks","check":false},
             {"path":"desktop.blocks","check":true}
         ]
         .map(function(level) {

@@ -1,0 +1,4 @@
+.tree__entity_type_mod:before
+{
+    content: '_';
+}

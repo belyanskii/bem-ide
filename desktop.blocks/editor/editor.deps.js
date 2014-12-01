@@ -5,9 +5,7 @@
         ]
     },
     {
-
         mustDeps: [
-            'initiator',
             'ace',
             { block : 'events', elems : 'channels' },
             { block : 'model' },

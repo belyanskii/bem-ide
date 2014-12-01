@@ -11,9 +11,9 @@
             {
                 block: 'checkbox',
                 mods: {
-                    type: 'button',
-                    theme: 'normal',
-                    size: 'm'
+                    theme: 'islands',
+                    size: 's',
+                    type: 'button'
                 }
             }
         ]
@@ -32,7 +32,7 @@
                 block: 'checkbox',
                 mods: {
                     type: 'button',
-                    theme: 'normal',
+                    theme: 'islands',
                     size: 's'
                 }
             }

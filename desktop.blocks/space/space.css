@@ -13,11 +13,10 @@
 
     box-sizing: border-box;
     width: 15%;
-    height: 100%;
+    height: calc(100% - 35px);
 }
 
-.space__right-side,
-.space__line
+.space__right-side
 {
     float: right;
     position: relative;
@@ -27,7 +26,9 @@
     height: calc(100% - 35px);
 }
 
-.space__line
+.space__right-side_type_line,
+.space__left-side_type_line
 {
     height: 35px;
+    border-bottom: 1px solid #000;
 }

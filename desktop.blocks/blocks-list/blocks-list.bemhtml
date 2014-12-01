@@ -1,4 +1,0 @@
-block('blocks-list')(
-    js()(true),
-    tag()('ul')
-);

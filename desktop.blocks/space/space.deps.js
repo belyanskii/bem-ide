@@ -10,16 +10,13 @@
             block: 'editor'
         },
         {
-            block: 'blocks-list'
+            block: 'tree'
         },
         {
             block: 'techs-line'
         },
         {
-            block: 'smart-line'
-        },
-        {
-            block: 'mousetrap'
+            block: 'new-entity'
         }
     ]
 }]

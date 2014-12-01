@@ -1,0 +1,23 @@
+.tree__entity
+{
+    position: relative;
+}
+
+.tree__entity:hover
+{
+    cursor: pointer;
+
+    color: #ffeba0;
+}
+
+.tree__entity:before
+{
+    position: absolute;
+    right: 102%;
+    bottom: 2px;
+}
+
+.tree__entity_selected
+{
+    color: red;
+}

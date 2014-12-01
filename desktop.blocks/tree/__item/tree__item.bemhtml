@@ -1,0 +1,34 @@
+block('tree').elem('item')(
+
+    js()(true),
+
+    cls()('i-bem'), // хак для инициализации при шаблонизации на клиенте :(
+
+    tag()('li'),
+
+    content()(function() {
+        return [
+            {
+                elem: 'entity',
+                type: 'block',
+                bmnttn: {
+                    blockName: this.ctx.blockInfo.name
+                },
+                content: this.ctx.blockInfo.name
+            },
+            !!(this.ctx.blockInfo.elems || []).length && {
+                elem: 'nested',
+                type: 'elem',
+                blockName: this.ctx.blockInfo.name,
+                data: this.ctx.blockInfo.elems
+            },
+            !!(this.ctx.blockInfo.mods || []).length && {
+                elem: 'nested',
+                type: 'mod',
+                blockName: this.ctx.blockInfo.name,
+                data: this.ctx.blockInfo.mods
+            }
+        ];
+    })
+
+);

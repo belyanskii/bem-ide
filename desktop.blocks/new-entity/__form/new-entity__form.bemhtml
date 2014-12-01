@@ -1,0 +1,45 @@
+block('new-entity').elem('form')(
+
+    js()(true),
+
+    content()(function() {
+        return [
+            {
+                block: 'input',
+                mix: [{ block: this.block, elem: 'block-name' }],
+                mods: { theme :'islands', size: 'm' },
+                placeholder : 'Block name'
+            },
+            {
+                block: 'input',
+                mix: [{ block: this.block, elem: 'elem-name' }],
+                mods: { theme :'islands', size: 'm' },
+                placeholder : 'Elem name'
+            },
+            {
+                block: 'input',
+                mix: [{ block: this.block, elem: 'mod-name' }],
+                mods: { theme :'islands', size: 'm' },
+                placeholder : 'Mod name'
+            },
+            {
+                block: 'input',
+                mix: [{ block: this.block, elem: 'mod-val' }],
+                mods: { theme :'islands', size: 'm' },
+                placeholder : 'Mod val'
+            },
+            {
+                block: 'input',
+                mix: [{ block: this.block, elem: 'techs' }],
+                mods: { theme :'islands', size: 'm' },
+                placeholder : 'Techs, separate by comma'
+            },
+            {
+                block: 'button',
+                text: 'Create',
+                mods: { theme: 'islands', size: 'm' }
+            }
+        ];
+    })
+
+);

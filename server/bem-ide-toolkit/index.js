@@ -1,7 +1,8 @@
 var scanl = require('scan-level'),
     PATH = require('path'),
     fs = require('vow-fs'),
-    vow = require('vow');
+    vow = require('vow'),
+    deepExtend = require('deep-extend');
 
 /**
  * Сканирует уровень с блоками
@@ -199,11 +200,110 @@ function saveTech(raw) {
     }, this));
 }
 
+// TODO: Использовать другой сканер с возможностью настройки получаемых на выходе данных
+/**
+ * Преобразовываем данные полученные путем интроспекции в удобный формат
+ * @param data
+ * @returns {Array}
+ */
+function introspectionDecorator(data) {
+    var extended = {},
+        blocksList = [];
+
+    // Склеиваем все уровни в одну партянку
+    // Нам не нужно знать про пути к файлам и т.д.
+    // Необходимо только знать все возможные модификаторы/элементы и технологии
+    data.forEach(function(level) {
+        deepExtend(extended, level.introspection);
+    }, this);
+
+    // Имея склееный начинаем собирать список блоков
+    // в нужном нам формате
+    Object.keys(extended).forEach(function(blockName) {
+        var blockData = extended[blockName],
+            block = getEntity(blockName, blockData);
+
+        /**
+         * Построение сущности (блок, элемент)
+         * @param name Название блока/элемента
+         * @param data Данные для преобразования
+         * @returns {Object}
+         */
+        function getEntity(name, data) {
+            var entity = {
+                name: name
+            };
+
+            // Если есть файлы - преобразуем их в массив технологий
+            Object.keys(data.files).length && (entity.techs = Object.keys(data.files));
+
+            // Если есть модификаторы - получаем их
+            Object.keys(data.mods).length && (entity.mods = getMods(data));
+
+            // Если мы в контексте блока - проверяем на наличие элементов
+            // Если они есть - вызываем себя же с новыми данными
+            if (Object.keys(data.elems || {}).length) {
+                entity.elems = [];
+
+                Object.keys(data.elems).forEach(function(elemName) {
+                    entity.elems.push(getEntity(elemName, data.elems[elemName]));
+                }, this);
+            }
+
+            return entity;
+        }
+
+        /**
+         * Построение данных про подификатор
+         * @param entity Данные блока/элемента
+         * @returns {Array}
+         */
+        function getMods(entity) {
+            var mods = [];
+
+            // Обходим все модификаторы сущности
+            Object.keys(entity.mods).forEach(function(modName) {
+                var modData = entity.mods[modName],
+                    mod = {
+                        name: modName
+                    };
+
+                // Если есть файлы - преобразуем в массив технологий
+                Object.keys(modData.files).length && (mod.techs = Object.keys(modData.files));
+
+                // Если у модификатора есть значение - обходим их и добавляем в результирующий объект
+                Object.keys(modData.vals).forEach(function(modVal) {
+                    if (!mod.vals) mod.vals = [];
+
+                    var valData = modData.vals[modVal],
+                        val = {
+                            name: modVal
+                        };
+
+                    // Если есть файлы - преобразуем в массив технологий
+                    Object.keys(valData).length && (val.techs = Object.keys(valData.files));
+
+                    mod.vals.push(val);
+                });
+
+                mods.push(mod);
+            });
+
+            return mods;
+        }
+
+        blocksList.push(block);
+    });
+
+    return blocksList;
+}
+
 module.exports = {
     scanLevel: scanLevel,
     scanLevels: scanLevels,
     scanLevelByBlock: scanLevelByBlock,
     scanBlock: scanBlock,
     getTech: getTech,
-    saveTech: saveTech
+    saveTech: saveTech,
+    introspectionDecorator: introspectionDecorator
 };

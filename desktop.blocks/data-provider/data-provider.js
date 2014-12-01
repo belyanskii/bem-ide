@@ -1,4 +1,4 @@
-modules.define('data-provider', ['jquery'], function(provide, $) {
+modules.define('data-provider', ['jquery', 'api'], function(provide, $, api) {
     provide({
 
         /**
@@ -9,33 +9,15 @@ modules.define('data-provider', ['jquery'], function(provide, $) {
          * @param {Object} ctx Контекст
          */
         getTech: function(bmnttn, tech, callback, ctx) {
-            $.ajax({
-                url: '/api/getEntityTech',
-                type: 'post',
-                context: ctx,
-                dataType: 'json',
-                data: {
-                    entity: bmnttn,
-                    tech: tech,
-                    levels: this.getLevelsList()
-                }
-            }).done(function(data) {
-                callback(data);
-            });
+            api
+                .exec('get-tech', { entity: bmnttn, tech: tech, levels: this.getLevelsList() })
+                .then(callback, ctx);
         },
 
         saveTech: function(data, callback, ctx) {
-            $.ajax({
-                url: '/api/saveEntityTech',
-                type: 'post',
-                context: ctx,
-                dataType: 'json',
-                data: {
-                    raw: data
-                }
-            }).done(function(data) {
-                callback(data);
-            });
+            api
+                .exec('save-tech', { raw: data })
+                .then(callback, ctx);
         },
 
         /**
@@ -44,17 +26,9 @@ modules.define('data-provider', ['jquery'], function(provide, $) {
          * @param {Object} ctx Контекст
          */
         getLevelsIntrospection: function(callback, ctx) {
-            $.ajax({
-                url: '/api/getLevels',
-                type: 'post',
-                context: ctx,
-                dataType: 'json',
-                data: {
-                    levels: this.getLevelsList()
-                }
-            }).done(function(data) {
-                callback(data);
-            });
+            api
+                .exec('introspection', { levels: this.getLevelsList() })
+                .then(callback, ctx);
         },
 
         /**
@@ -66,7 +40,8 @@ modules.define('data-provider', ['jquery'], function(provide, $) {
                 'libs/bem-core/common.blocks',
                 'libs/bem-core/desktop.blocks',
                 'libs/bem-components/common.blocks',
-                'libs/bem-components/desktop.blocks'
+                'libs/bem-components/desktop.blocks',
+                'desktop.bundles/'
             ];
         }
 

@@ -19,6 +19,7 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
 
             techs: {
                 type: 'array',
+                default: [],
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }
@@ -44,6 +45,7 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
 
             techs: {
                 type: 'array',
+                default: [],
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }
@@ -68,6 +70,7 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
 
             techs: {
                 type: 'array',
+                default: [],
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }
@@ -83,6 +86,7 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
 
             techs: {
                 type: 'array',
+                default: [],
                 preprocess: function(techs) {
                     return techsPreprocess($.unique((this.get('techs') || []).concat(techs)));
                 }

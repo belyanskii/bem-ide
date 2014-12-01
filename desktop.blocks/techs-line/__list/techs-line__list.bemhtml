@@ -9,10 +9,10 @@ block('techs-line').elem('list')(
                     elem: 'list-item'
                 },
                 mods: {
-                    theme : 'normal',
-                    size : 's',
-                    type : 'button',
-                    checked : !this.ctx.techsToHide.length || this.ctx.techsToHide.indexOf(tech) < 0
+                    theme: 'islands',
+                    size: 's',
+                    type: 'button',
+                    checked: !this.ctx.techsToHide.length || this.ctx.techsToHide.indexOf(tech) < 0
                 },
                 val: tech,
                 text: tech

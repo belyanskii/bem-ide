@@ -17,8 +17,6 @@ modules.define(
          * @param {Array} techsToHide
          */
         _createEditorInstance: function(bmnttn, tech, techsToHide) {
-            var _this = this;
-
             dp.getTech(bmnttn, tech, function(data) {
                 var aceEditor;
 
@@ -36,7 +34,7 @@ modules.define(
                 this._setEditorSettings(aceEditor, tech);
 
                 aceEditor.setValue(data.join(''), -1);
-            }.bind(_this), this);
+            }, this);
         },
 
         /**
@@ -67,17 +65,6 @@ modules.define(
                 }
             });
 
-            // Подписываемся для сохранения
-            editorInst.commands.addCommand({
-                name: 'saveData',
-                bindKey: { win: 'Ctrl-B',  mac: 'Command-B' },
-                exec: function() {
-                    channels('space').emit('entity:create');
-
-                    return false;
-                }
-            });
-
             // запрещаем редактировать строчки разделяющие уровни переопределения
             editorInst.selection.on('changeCursor', function(event, data) {
                 var range = data.getRange(),
@@ -97,6 +84,7 @@ modules.define(
             var techAssoc = {
                     javascript: [
                         'js',
+                        'bh.js',
                         'vanilla.js',
                         'spec.js',
                         'deps.js',
@@ -110,7 +98,11 @@ modules.define(
                         'ie7.css',
                         'ie8.css'
                     ],
-                    markdown: ['md']
+                    markdown: [
+                        'md',
+                        'ru.md',
+                        'en.md'
+                    ]
                 };
 
             if(techAssoc.javascript.indexOf(tech) > -1) {

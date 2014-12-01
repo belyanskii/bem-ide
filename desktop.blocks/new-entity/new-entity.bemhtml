@@ -1,0 +1,22 @@
+block('new-entity')(
+
+    js()(true),
+
+    content()(function() {
+        return [
+            {
+                block: 'button',
+                mix: [{ block: 'new-entity', elem: 'toggle' }],
+                mods: { theme: 'islands', size: 's' },
+                text: 'add entity'
+            },
+            {
+                elem: 'cover'
+            },
+            {
+                elem: 'form'
+            }
+        ];
+    })
+
+);

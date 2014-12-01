@@ -1,0 +1,34 @@
+.tree__entity_type_block
+{
+    font-size: 18px;
+    line-height: 22px;
+
+    width: 100%;
+    margin: -5px 0 -5px -10px;
+    padding: 5px 0 5px 10px;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.tree__entity_type_block:hover
+{
+    cursor: pointer;
+
+    color: #ffeba0;
+}
+
+.tree_selected .tree__entity_type_block,
+.tree_selected .tree__entity_type_block:hover
+{
+    color: #ffc900;
+    background: none;
+    background: rgba(255, 255, 255, .31);
+}
+
+.tree__entity_type_block:focus
+{
+    outline: none;
+}

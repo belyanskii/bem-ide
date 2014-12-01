@@ -1,0 +1,33 @@
+block('tree').elem('entity')(
+
+    def()(function() {
+        var generateEntityPath = function(bmnttn) {
+            var path = [];
+
+            path.push(bmnttn.blockName);
+            path.push(bmnttn.elemName);
+            path.push(bmnttn.modName);
+            path.push(bmnttn.modVal);
+
+            return path.join('');
+        }
+
+        var bmnttn = this.ctx.bmnttn;
+
+        return applyCtx({
+            block: 'link',
+            mods: { pseudo: true },
+            mix: [{
+                block: 'tree',
+                elem: 'entity',
+                js: bmnttn,
+                elemMods: {
+                    type: this.ctx.type,
+                    path: generateEntityPath(bmnttn)
+                }
+            }],
+            content: this.ctx.content
+        });
+    })
+
+);

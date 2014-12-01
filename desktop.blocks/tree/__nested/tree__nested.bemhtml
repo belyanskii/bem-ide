@@ -1,0 +1,18 @@
+block('tree').elem('nested')(
+
+    tag()('ul'),
+
+    content()(function() {
+        return this.ctx.data.map(function(item) {
+            return {
+                block: 'tree',
+                elem: 'nested-item',
+                type: this.ctx.type,
+                blockName: this.ctx.blockName,
+                elemName: this.ctx.elemName,
+                modName: this.ctx.modName,
+                data: item
+            };
+        }, this)
+    })
+);

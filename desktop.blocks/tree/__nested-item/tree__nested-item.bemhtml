@@ -1,0 +1,52 @@
+block('tree').elem('nested-item')(
+
+    tag()('li'),
+
+    content()(function() {
+        var ctx = this.ctx,
+            data = ctx.data,
+            type = ctx.type,
+            isElem = type === 'elem',
+            isMod = type === 'mod',
+            isModVal = type === 'mod-val',
+            bmnttn = {
+                blockName: ctx.blockName,
+                elemName: (isElem || ctx.elemName) ? // Если это элемент || если передано название элемента
+                    (ctx.elemName || data.name) :
+                    undefined,
+                modName: (isMod || isModVal) ? // Если это модификатор || если передано название модификатора
+                    (ctx.modName || data.name) :
+                    undefined,
+                modVal: isModVal ? data.name : undefined // Если это значение модификатора
+            },
+            res = [{
+                elem: 'entity',
+                type: type,
+                bmnttn: bmnttn,
+                content: data.name
+            }];
+
+        // если у елемента есть модификатор(ы)
+        (data.mods || []).length && res.push({
+            block: 'tree',
+            elem: 'nested',
+            type: 'mod',
+            blockName: ctx.blockName,
+            elemName: data.name,
+            data: data.mods
+        });
+
+        // если у модификатора есть значение(я)
+        (data.vals || []).length && res.push({
+            block: 'tree',
+            elem: 'nested',
+            type: 'mod-val',
+            blockName: ctx.blockName,
+            modName: data.name,
+            elemName: ctx.elemName,
+            data: data.vals
+        });
+
+        return res;
+    })
+);
