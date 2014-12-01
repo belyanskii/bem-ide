@@ -51,7 +51,7 @@ modules.define(
             /**
              * Генерируем путь к сущности используя bmnttn
              * Аналогичным образом мы это делаем в шаблоне элемента nested-item
-             * @param bmnttn
+             * @param {Object} bmnttn
              * @returns {string}
              */
             generateEntityPath: function(bmnttn) {
@@ -72,7 +72,7 @@ modules.define(
             },
 
             _selectEntity: function(e, bmnttn) {
-                if (this.findElemInstance('entity', 'selected', true)) {
+                if(this.findElemInstance('entity', 'selected', true)) {
                     this.findElemInstance('entity', 'selected', true).delMod('selected');
                 }
 

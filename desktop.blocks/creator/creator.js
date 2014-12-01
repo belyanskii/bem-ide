@@ -166,12 +166,12 @@ modules.define(
                     name: blockName
                 };
 
-            if (modName) {
+            if(modName) {
                 var mod = [{
                     name: modName
                 }];
 
-                if (modVal) {
+                if(modVal) {
                     mod[0].vals = [{
                         name: modVal
                     }];
@@ -182,7 +182,7 @@ modules.define(
                 }
             }
 
-            if (elemName) {
+            if(elemName) {
                 entityData.elems = [{
                     name: elemName
                 }];

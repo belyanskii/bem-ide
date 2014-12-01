@@ -1,6 +1,6 @@
 modules.define(
     'new-entity',
-    ['i-bem__dom', 'jquery', 'BEMHTML','events__channels', 'creator'],
+    ['i-bem__dom', 'jquery', 'BEMHTML', 'events__channels', 'creator'],
     function(provide, BEMDOM, $, BEMHTML, channels, creator) {
         provide(BEMDOM.decl(this.name, {
 
@@ -37,7 +37,7 @@ modules.define(
 
             /**
              * Выбираем добавленную сущность
-             * @param bmnttn
+             * @param {Object} bmnttn
              * @private
              */
             _selectEntity: function(bmnttn) {

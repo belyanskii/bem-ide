@@ -3,7 +3,7 @@ modules.define('m-block', ['model', 'jquery'], function(provide, model, $) {
     /**
      * Фильтруем технологии
      * Временное решение для issue#2
-     * @param techs
+     * @param {Array} techs
      * @returns {*}
      */
     function techsPreprocess(techs) {
