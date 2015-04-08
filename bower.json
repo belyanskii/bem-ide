@@ -8,8 +8,8 @@
     "libs"
   ],
   "dependencies": {
-    "bem-core": "git://github.com/bem/bem-core.git#v2.5.0",
-    "bem-components": "git://github.com/bem/bem-components.git#a02b09448af2c292d8a628e0344d7cd97cb9867e",
+    "bem-core": "git://github.com/bem/bem-core.git#v2.6.0",
+    "bem-components": "git://github.com/bem/bem-components.git#v2.1.0",
     "bem-mvc": "git://github.com/bem/bem-mvc.git#v2"
   },
   "resolutions": {
